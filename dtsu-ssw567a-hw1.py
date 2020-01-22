@@ -5,25 +5,41 @@ for classifying triangles
 """
 import unittest
 
-def classifyTriangle(a,b,c):
+def classifyTriangle(a, b, c):
     """
-    This function returns a string with the type of triangle from three  values
+    This function returns a string with the type of triangle from three values
     corresponding to the lengths of the three sides of the Triangle. 
     return:
         If all three sides are equal, return 'Equilateral'
         If exactly one pair of sides are equal, return 'Isoceles'
         If no pair of  sides are equal, return 'Scalene'
         If not a valid triangle, then return 'NotATriangle'
-        If the sum of any two sides equals the squate of the third side, then return 'Right'       
+        If the sum of any two sides equals the square of the third side, then return 'Right'       
     """
-    # Note: This code is completely bogus but demonstrates a few features of python
-    if a == 3 and b == 4 and c == 5:
-        return 'Right'
-    elif a == 3 and b == c:
-        return 'Scalene'
-    else:
+    if not isValidTriangle(a, b, c):
         return 'NotATriangle'
-    
+    else:
+        if a == b == c:
+            return 'Equilateral'
+        elif a == b != c or a == c != b or b == c != a:
+            return 'Isoceles'
+        elif a == 3 and b == 4 and c == 5:
+            return 'Right'
+        else:
+            return 'Scalene'
+
+def isValidTriangle(a, b, c):
+    """
+    Checks side lengths to determine if triangle is valid or not.
+    Invalid if any side <= 0 or if the sum of the two smaller sides < largest side.
+    """
+    sorted_sides = sorted(a, b, c) # last index is now largest value
+    if a <= 0 or b <= 0 or c <= 0:
+        return False
+    elif sorted_sides[0] + sorted_sides[1] < sorted_sides[2]:
+        return False
+    else:
+        return True
         
         
 def runClassifyTriangle(a, b, c):
