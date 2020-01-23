@@ -93,6 +93,8 @@ class TestTriangles(unittest.TestCase):
         self.assertEqual(classifyTriangle(-2,3,-4),'NotATriangle','-2,3,-4 is NotATriangle')        
         self.assertEqual(classifyTriangle(-1,3,5),'NotATriangle','-1,3,5 is NotATriangle')
         self.assertEqual(classifyTriangle('a','b','c'),'NotATriangle','a,b,c is NotATriangle')
+        self.assertEqual(classifyTriangle('','',''),'NotATriangle','<no input> is NotATriangle')
+
 
 if __name__ == '__main__':
     # examples of running the code
